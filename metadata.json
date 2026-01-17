@@ -1,0 +1,8 @@
+{
+  "name": "MIT Path - 2nd C Cameroon",
+  "description": "Révision intensive 2nde C. Mode offline et IA Mentor.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
