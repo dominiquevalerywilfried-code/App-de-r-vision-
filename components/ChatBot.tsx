@@ -1,7 +1,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { Message } from '../types';
-import { askGemma } from '../services/geminiService';
+import { askGemini } from '../services/geminiService';
 
 const STORAGE_KEY = 'mit_path_v1_history';
 
@@ -24,8 +24,8 @@ const ChatBot: React.FC = () => {
     } else {
       setMessages([{
         id: 'welcome',
-        text: "Bienvenue futur bachelier. Je suis Gemma. Notre conversation est sauvegardée automatiquement pour tes révisions hors-ligne.",
-        sender: 'gemma',
+        text: "Bienvenue futur bachelier. Je suis Gemini. Notre conversation est sauvegardée automatiquement pour tes révisions hors-ligne.",
+        sender: 'gemini',
         timestamp: new Date()
       }]);
     }
@@ -55,16 +55,16 @@ const ChatBot: React.FC = () => {
     setInput('');
     setIsLoading(true);
 
-    const response = await askGemma(input);
+    const response = await askGemini(input);
 
-    const gemmaMsg: Message = {
+    const geminiMsg: Message = {
       id: (Date.now() + 1).toString(),
       text: response,
-      sender: 'gemma',
+      sender: 'gemini',
       timestamp: new Date()
     };
 
-    setMessages(prev => [...prev, gemmaMsg]);
+    setMessages(prev => [...prev, geminiMsg]);
     setIsLoading(false);
   };
 
@@ -74,7 +74,7 @@ const ChatBot: React.FC = () => {
       setMessages([{
         id: 'welcome',
         text: "Historique réinitialisé. Nouveau départ !",
-        sender: 'gemma',
+        sender: 'gemini',
         timestamp: new Date()
       }]);
     }
@@ -86,7 +86,7 @@ const ChatBot: React.FC = () => {
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 bg-indigo-500 rounded-full flex items-center justify-center font-bold">G</div>
           <div>
-            <div className="text-sm font-bold leading-none">Mentor Gemma</div>
+            <div className="text-sm font-bold leading-none">Mentor Gemini</div>
             <div className="text-[9px] text-green-400 uppercase tracking-tighter">Auto-Save Actif</div>
           </div>
         </div>
@@ -107,7 +107,7 @@ const ChatBot: React.FC = () => {
             </div>
           </div>
         ))}
-        {isLoading && <div className="text-xs text-indigo-500 animate-pulse font-bold">Gemma réfléchit...</div>}
+        {isLoading && <div className="text-xs text-indigo-500 animate-pulse font-bold">Gemini réfléchit...</div>}
       </div>
 
       <div className="p-3 border-t bg-white">
